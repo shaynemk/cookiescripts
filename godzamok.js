@@ -1,4 +1,4 @@
-var x = 5
+var x = 500
 var y = function() { 
 	Game.ObjectsById[0].sell(x);
 	//Game.ObjectsById[0].sell(x);
