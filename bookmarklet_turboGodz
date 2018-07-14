@@ -1,0 +1,6 @@
+javascript:(
+  function () {
+    Game.LoadMod('https://rawgit.com/shaynemk/cookiescripts/master/godzamok.js');
+    Game.LoadMod('https://rawgit.com/shaynemk/cookiescripts/master/turboClicker.js');
+  }()
+);
