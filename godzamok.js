@@ -1,15 +1,11 @@
-var x = 500
+var x = 5 //how many to sell/buy
 var y = function() { 
-	Game.ObjectsById[0].sell(x);
-	//Game.ObjectsById[0].sell(x);
-	//Game.ObjectsById[0].sell(x);
-	//Game.ObjectsById[0].sell(x);
-	//Game.ObjectsById[0].sell(x);
-	Game.ObjectsById[0].buy(x);
-	//Game.ObjectsById[0].buy(x);
-	//Game.ObjectsById[0].buy(x);
-	//Game.ObjectsById[0].buy(x);
-	//Game.ObjectsById[0].buy(x);
-	setTimeout(function(){ y() }, 10100);
+  for (i=0; i<x; i++) {
+    Game.ObjectsById[0].sell(x);
+  }
+  for (i=0; i<x; i++) {
+    Game.ObjectsById[0].buy(x);
+  }
+  setTimeout(function(){ y() }, 10100);
 }
 y();
