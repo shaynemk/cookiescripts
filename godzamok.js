@@ -1,11 +1,10 @@
-var x = 5 //how many to sell/buy
-var y = function() { 
-  for (i=0; i<x; i++) {
-    Game.ObjectsById[0].sell(x);
+setInterval(function() {
+  var xOfferingsToGodzamok = 5 //how many to sell/buy
+  if (Game.buyBulk != 100) Game.buyBulk = 100;
+  for (i=0; i<xOfferingsToGodzamok; i++) {
+    Game.ObjectsById[0].sell(xOfferingsToGodzamok);
   }
-  for (i=0; i<x; i++) {
-    Game.ObjectsById[0].buy(x);
+  for (i=0; i<xOfferingsToGodzamok; i++) {
+    Game.ObjectsById[0].buy(xOfferingsToGodzamok);
   }
-  setTimeout(function(){ y() }, 10100);
-}
-y();
+}, 10100);
