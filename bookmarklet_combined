@@ -1,7 +1,7 @@
 javascript:(
   function () {
     Game.LoadMod('https://rawgit.com/Mezmerro/FrozenCookies/master/frozen_cookies.js');
-    Game.LoadMod('https://rawgit.com/shaynemk/cookiescripts/master/godzamok.js');
     Game.LoadMod('https://rawgit.com/shaynemk/cookiescripts/master/turboClicker.js');
+    Game.LoadMod('https://rawgit.com/shaynemk/cookiescripts/master/godzamok.js');
   }()
 );
