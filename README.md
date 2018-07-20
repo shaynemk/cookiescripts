@@ -14,7 +14,7 @@ bookmarklet_combined:
 - Custom Turbo Clicker
 - Custom Godzamok automatic buy/sell code
 
-bookmarklet_turboGodz:
+bookmarklet_turboGodzamok:
 - Turbo Clicker
 - Godzamok
 
