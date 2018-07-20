@@ -1,6 +1,6 @@
 javascript:(
   function () {
-    Game.LoadMod('https://rawgit.com/shaynemk/cookiescripts/master/turboClicker.js');
-    Game.LoadMod('https://rawgit.com/shaynemk/cookiescripts/master/godzamok.js');
+    Game.LoadMod('https://rawgit.com/shaynemk/cookiescripts/master/s_turboClicker.js');
+    Game.LoadMod('https://rawgit.com/shaynemk/cookiescripts/master/s_godzamok.js');
   }()
 );
