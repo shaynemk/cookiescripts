@@ -15,6 +15,9 @@ if (!farm.minigameLoaded && !farm.freeze) {
 }
 
 var farmAway = function() {
+  while (farmM.getTile(2,2)[1] < 90) {
+    setTimeout(farmAway, 1000 * 60 * 1);
+  }
   farmM.tools.harvestAll.func();
   farmM.soil = soilFertilizer.id;
   console.log("Set soil type to fertilizer.");
