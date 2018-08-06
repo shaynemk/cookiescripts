@@ -17,6 +17,7 @@ if (!farm.minigameLoaded && !farm.freeze) {
 var farmAway = function() {
   while (farmM.getTile(2,2)[1] < 90) {
     setTimeout(farmAway, 1000 * 60 * 1);
+    console.log("Thumbcorn at 2,2 age is < 90, waiting 1 minute.");
   }
   farmM.tools.harvestAll.func();
   farmM.soil = soilFertilizer.id;
