@@ -11,6 +11,7 @@ if (!farm.minigameLoaded && !farm.freeze) {
   alert("Farming not enabled yet (or frozen), buy/upgrade some farms or unfreeze!");
 } else {
   console.log("Congrats, you can farm shit now.");
+  farmAway();
   setInterval(farmAway, 1000 * 60 * 60 * 3);
 }
 
