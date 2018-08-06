@@ -12,14 +12,10 @@ if (!farm.minigameLoaded && !farm.freeze) {
 } else {
   console.log("Congrats, you can farm shit now.");
   farmAway();
-  //setInterval(farmAway, 1000 * 60 * 60 * 3);
+  setInterval(farmAway, 1000 * 60 * 60 * 3);
 }
 
-var farmAway = function() {
-  while (farmM.getTile(2,2)[1] < 90) {
-    setTimeout(farmAway, 1000 * 60 * 1);
-    console.log("Thumbcorn at 2,2 age is < 90, waiting 1 minute.");
-  }
+function farmAway() {
   farmM.tools.harvestAll.func();
   farmM.soil = soilFertilizer.id;
   console.log("Set soil type to fertilizer.");
@@ -37,9 +33,13 @@ var farmAway = function() {
   for (x=0;x<6;x++) {
     for (y=0;y<6;y++) {
       //check if plot is unlocked
-      if (farmM.isTileUnlocked(x,y)) {
+      if (farmM.isTileUnlocked(x,y)) { // check if the tile is unlocked
         currentTile = farmM.getTile(x,y);
-        if (currentTile[0] >= 1) {
+        if (currentTile[0] >= 1) { // check if there is something there
+          if (farmM.getTile(2,2)[1] < 90) {
+            setTimeout(farmAway, 1000 * 60 * 1);
+            console.log("Thumbcorn at 2,2 age is < 90, waiting 1 minute.");
+          }
           currentPlant = farmM.plantsById[currentTile[0]-1];
           console.log("Plot (" + x + ", " + y + ") has " + currentPlant.name + " planted.");
        } else {
@@ -53,7 +53,7 @@ var farmAway = function() {
 }
 
 
-var useClay = function() {
+function useClay() {
   farmM.soil = soilClay.id;
   console.log("Set soil type to clay.");
 }
