@@ -1,0 +1,5 @@
+javascript:(
+  function(){
+    Game.LoadMod('https://rawgit.com/shaynemk/cookiescripts/master/s_farmerJohn.js');
+  }()
+);
