@@ -47,6 +47,7 @@ function farmAway() {
     }
   }
   setTimeout(useClay, 1000 * 60 * 9); // 9 minutes = 3 ticks @ 3min/ticks (fertilizer) = thumbcorn maturation
+  setInterval(farmAway, 1000 * 60 * 60 * 3); // run farm func again in 3 hours
 }
 
 if (!farm.minigameLoaded && !farm.freeze) {
@@ -54,6 +55,5 @@ if (!farm.minigameLoaded && !farm.freeze) {
 } else {
   console.log("Congrats, you can farm shit now.");
   farmAway();
-  setInterval(farmAway, 1000 * 60 * 60 * 3);
 }
 
