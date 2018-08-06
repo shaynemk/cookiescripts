@@ -12,7 +12,7 @@ if (!farm.minigameLoaded && !farm.freeze) {
 } else {
   console.log("Congrats, you can farm shit now.");
   farmAway();
-  setInterval(farmAway, 1000 * 60 * 60 * 3);
+  //setInterval(farmAway, 1000 * 60 * 60 * 3);
 }
 
 var farmAway = function() {
