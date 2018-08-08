@@ -1,0 +1,8 @@
+javascript:(
+  function () {
+    Game.LoadMod('https://raw.githubusercontent.com/Mezmerro/FrozenCookies/master/frozen_cookies.js');
+    Game.LoadMod('https://raw.githubusercontent.com/shaynemk/cookiescripts/master/s_turboClicker.js');
+    Game.LoadMod('https://raw.githubusercontent.com/shaynemk/cookiescripts/master/s_godzamok.js');
+    Game.LoadMod('https://raw.githubusercontent.com/shaynemk/cookiescripts/master/s_farmerJohn.js');
+  }()
+);
