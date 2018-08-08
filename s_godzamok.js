@@ -1,4 +1,4 @@
-var intervalID;
+var FireBreathID;
 
 function fireDragonMagic() {
   var xOfferingsToGodzamok = 6; //how many hundreds to sell/buy
@@ -7,11 +7,11 @@ function fireDragonMagic() {
 }
 
 function startTheFire() {
-  intervalID = setInterval(fireDragonMagic(), 10100);
+  FireBreathID = setInterval(fireDragonMagic(), 10100);
 }
 
 function stopTheFire() {
-  clearInterval(intervalID);
+  clearInterval(FireBreathID);
 }
 
 startTheFire();
