@@ -32,8 +32,8 @@ function farmAway() {
         currentTile = farmM.getTile(x,y);
         if (currentTile[0] >= 1) { // check if there is something there
           currentPlant = farmM.plantsById[currentTile[0]-1];
-          if (currentTile[1] < 90 && currentPlant.id == farm.seedSelected) { // plant is not quite old enough...i think this is out of 100? not sure.
-            debugLog("Thumbcorn (" + x + "," + y + ") age is < 90, skipping.");
+          if (currentTile[1] < 95 && currentPlant.id == farm.seedSelected) { // plant is not quite old enough...i think this is out of 100? not sure.
+            debugLog("Thumbcorn (" + x + "," + y + ") age is < 95, skipping.");
             continue;
           } else /*if (currentPlant.id != farm.seedSelected)*/ { // plant is old enough and/or not the same seed planted
             farmM.harvest(x,y);
