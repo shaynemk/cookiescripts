@@ -7,6 +7,7 @@ var soilClay = farmM.soils["clay"];
 var currentTile;
 var currentPlant;
 var xDEBUG = true;
+var xDebugPrefix = "[Farmer John Says:] ";
 var needFertilizer = false;
 
 function useClay() {
@@ -59,7 +60,7 @@ function plant(x,y) {
 }
 
 function debugLog(message) {
-  if (xDEBUG) console.log(message);
+  if (xDEBUG) console.log(xDebugPrefix + message);
 }
 
 if (!farm.minigameLoaded && !farm.freeze) {
