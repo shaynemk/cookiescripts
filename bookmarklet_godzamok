@@ -1,5 +1,5 @@
 javascript:(
   function () {
-    Game.LoadMod('https://raw.githubusercontent.com/shaynemk/cookiescripts/master/s_godzamok.js');
+    Game.LoadMod('https://rawgit.com/shaynemk/cookiescripts/master/s_godzamok.js');
   }()
 );
