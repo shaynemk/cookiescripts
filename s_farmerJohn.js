@@ -10,11 +10,6 @@ var xDEBUG = true;
 var xDebugPrefix = "[Farmer John Says:] ";
 var needFertilizer = false;
 
-function useClay() {
-  farmM.soil = soilClay.id;
-  debugLog("Set soil type to clay.");
-}
-
 function farmAway() {
   //farmM.tools.harvestAll.func();
   //farmM.soil = soilFertilizer.id;
@@ -49,7 +44,7 @@ function farmAway() {
       }
     }
   }
-  if (needFertilizer) setTimeout(useClay, 1000 * 60 * 9); // 9 minutes = 3 ticks @ 3min/ticks (fertilizer) = thumbcorn maturation
+  if (needFertilizer) useFertilizer();
   setInterval(farmAway, 1000 * 60 * 60 * 3); // run farm func again in 3 hours
 }
 
@@ -57,6 +52,17 @@ function plant(x,y) {
   farmM.useTool(farm.seedSelected,x,y);
   needFertilizer = true;
   debugLog("Planted " + farmM.plantsById[currentTile[0]-1].name + " in plot (" + x + ", " + y + ").");
+}
+
+function useFertilizer() {
+  farmM.soil = soilFertilizer.id;
+  debugLog("Set soil type to fertilizer.");
+  setTimeout(useClay, 1000 * 60 * 9); // 9 minutes = 3 ticks @ 3min/ticks (fertilizer) = thumbcorn maturation
+}
+
+function useClay() {
+  farmM.soil = soilClay.id;
+  debugLog("Set soil type to clay.");
 }
 
 function debugLog(message) {
