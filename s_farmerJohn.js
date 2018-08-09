@@ -35,8 +35,13 @@ function farmAway() {
           if (currentTile[1] < 95 && currentPlant.id == farm.seedSelected) { // plant is not quite old enough...i think this is out of 100? not sure.
             debugLog("Thumbcorn (" + x + "," + y + ") age is < 95, skipping.");
             continue;
+          } else if (currentTile[1] >= 95 || currentTile[1] == 0) { // if the plant is old or plot empty harvest all and reset to plant all
+            farmM.tools.harvestAll.func();
+            x=0;
+            y=0;
+            plant(x,y);
           } else /*if (currentPlant.id != farm.seedSelected)*/ { // plant is old enough and/or not the same seed planted
-            farmM.harvest(x,y);
+            //farmM.harvest(x,y);
             plant(x,y);
             debugLog("Plot (" + x + ", " + y + ") had " + currentPlant.name + " planted");
           }
@@ -51,7 +56,7 @@ function farmAway() {
 function plant(x,y) {
   farmM.useTool(farm.seedSelected,x,y);
   needFertilizer = true;
-  debugLog("Planted " + farmM.plantsById[currentTile[0]-1].name + " in plot (" + x + ", " + y + ").");
+  //debugLog("Planted " + farmM.plantsById[currentTile[0]-1].name + " in plot (" + x + ", " + y + ").");
 }
 
 function useFertilizer() {
