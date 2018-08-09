@@ -8,6 +8,7 @@ function fireDragonMagic() {
 }
 
 function startTheFire() {
+  fireDragonMagic();
   FireBreathID = setInterval(fireDragonMagic, 10100);
 }
 
