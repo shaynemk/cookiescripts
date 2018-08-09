@@ -75,7 +75,7 @@ function debugLog(message) {
 }
 
 if (!farm.minigameLoaded && !farm.freeze) {
-  alert("Farming not enabled yet (or frozen), buy/upgrade some farms or unfreeze!");
+  Game.Note("Farmer John","Farming not enabled yet (or frozen), buy/upgrade some farms or unfreeze!");
 } else {
   debugLog("Congrats, you can farm shit now.");
   farmAway();
