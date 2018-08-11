@@ -30,33 +30,40 @@ function farmAway() {
     for (y=0;y<6;y++) {
       if (farmM.isTileUnlocked(x,y)) { // check if the tile is unlocked
         currentTile = farmM.getTile(x,y);
-        if (currentTile[0] >= 1) { // check if there is something there
+        if (currentTile[0] >= 1) { // is something there
           currentPlant = farmM.plantsById[currentTile[0]-1];
-          if (currentTile[1] < 95 && currentPlant.id == farm.seedSelected) { // plant is not quite old enough...i think this is out of 100? not sure.
-            debugLog("Thumbcorn (" + x + "," + y + ") age is < 95, skipping.");
+          if (currentTile[1] < 95 && currentPlant.id == farm.seedSelected) { // plant is too young...i think this is out of 100? not sure.
+            debugLog(currentPlant.name + " in (" + x + "," + y + ") age is < 95, skipping.");
             continue;
-          } else if (currentTile[1] >= 95 || currentTile[1] == 0) { // if the plant is old or plot empty harvest all and reset to plant all
-            farmM.tools.harvestAll.func();
-            x=0;
-            y=0;
-            plant(x,y);
-          } else /*if (currentPlant.id != farm.seedSelected)*/ { // plant is old enough and/or not the same seed planted
+          }// else if (currentTile[1] >= 95) { // if the plant is old enough, replant
+            //farmM.tools.harvestAll.func();
+            //x=0;
+            //y=0;
+            //harvest(x,y);
+            //plant(x,y);
+          /*}*/ else /*if (currentPlant.id != farm.seedSelected)*/ { // plant is old enough and/or not the same seed planted
             //farmM.harvest(x,y);
+            //debugLog("Plot (" + x + ", " + y + ") had " + currentPlant.name + " planted");
+            harvest(x,y);
             plant(x,y);
-            debugLog("Plot (" + x + ", " + y + ") had " + currentPlant.name + " planted");
           }
         } else plant(x,y); // plot was empty, plant something
       }
     }
   }
   if (needFertilizer) useFertilizer();
-  setInterval(farmAway, 1000 * 60 * 60 * 3); // run farm func again in 3 hours
+  setTimer(farmAway, 1000 * 60 * 5 /*60 * 3*/); // run farm func again in /*3 hours*/ 5 minutes
 }
 
 function plant(x,y) {
   farmM.useTool(farm.seedSelected,x,y);
   needFertilizer = true;
-  //debugLog("Planted " + farmM.plantsById[currentTile[0]-1].name + " in plot (" + x + ", " + y + ").");
+  debugLog("Planted " + farm.seedSelected.name + " in plot (" + x + ", " + y + ").");
+}
+
+function harvest(x,y) {
+  debugLog("Harvested " + currentPlant.name + " in plot (" + x + ", " + y + ").");
+  farmM.harvest(x,y);
 }
 
 function useFertilizer() {
