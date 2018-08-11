@@ -2,6 +2,7 @@ var farm = Game.Objects["Farm"];
 var farmM = farm.minigame;
 var plantBakerWheat = farmM.plants.bakerWheat;
 var plantThumbcorn = farmM.plants.thumbcorn;
+var mySeed;
 var soilFertilizer = farmM.soils["fertilizer"];
 var soilClay = farmM.soils["clay"];
 var currentTile;
@@ -17,14 +18,15 @@ function farmAway() {
   if (!plantThumbcorn.unlocked) {
     //plant bakers wheat in correct orientation to get thumbcorn
     //use wood chips if possible (>300)
-    farm.seedSelected = plantBakerWheat.id;
+    mySeed = plantBakerWheat;
     debugLog("Selected Baker's Wheat instead of Thumbcorn, fucking pleb.");
   } else {
     //plant thumbcorn in all plots
     //use fertilizer until fully grown
     //use clay when mature
-    farm.seedSelected = plantThumbcorn.id;
+    mySeed = plantThumbcorn;
   }
+  farm.seedSelected = mySeed.id;
   needFertilizer = false;
   for (x=0;x<6;x++) {
     for (y=0;y<6;y++) {
@@ -58,7 +60,7 @@ function farmAway() {
 function plant(x,y) {
   farmM.useTool(farm.seedSelected,x,y);
   needFertilizer = true;
-  debugLog("Planted " + farm.seedSelected.name + " in plot (" + x + ", " + y + ").");
+  debugLog("Planted " + mySeed.name + " in plot (" + x + ", " + y + ").");
 }
 
 function harvest(x,y) {
