@@ -10,6 +10,8 @@ var currentPlant;
 var xDEBUG = true;
 var xDebugPrefix = "[Farmer John] ";
 var needFertilizer = false;
+var numMature;
+var numMajority = 5;
 
 function farmAway() {
   if (!plantThumbcorn.unlocked) {
@@ -31,11 +33,13 @@ function farmAway() {
             harvest(x,y);
             plant(x,y);
           }
+          if (currentTile[1] >= 19) numMature = numMature + 1; // how many plants are nearly mature
         } else plant(x,y); // plot was empty, plant something
       }
     }
   }
   if (needFertilizer) useFertilizer();
+  if (numMature >= numMajority) useClay();
   debugLog("Done farming for now.");
 }
 
@@ -70,5 +74,5 @@ if (!farm.minigameLoaded && !farm.freeze) {
 } else {
   debugLog("Congrats, you can farm shit now.");
   farmAway();
-  setInterval(farmAway, 1000 * 60 * 5); // run every 5 minutes
+  setInterval(farmAway, 1000 * 60 * 3); // run every 5 minutes
 }
