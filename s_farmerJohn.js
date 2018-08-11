@@ -55,7 +55,7 @@ function farmAway() {
   }
   if (needFertilizer) useFertilizer();
   gameNote("Done farming for now.");
-  setTimeout(farmAway, 1000 * 60 * 5 /*60 * 3*/); // run farm func again in /*3 hours*/ 5 minutes
+  //setTimeout(farmAway, 1000 * 60 * 5 /*60 * 3*/); // run farm func again in /*3 hours*/ 5 minutes
 }
 
 function plant(x,y) {
@@ -93,5 +93,6 @@ if (!farm.minigameLoaded && !farm.freeze) {
 } else {
   debugLog("Congrats, you can farm shit now.");
   farmAway();
+  setInterval(farmAway, 1000 * 60 * 5); // run every 5 minutes
 }
 
