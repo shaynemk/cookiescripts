@@ -52,7 +52,7 @@ function farmAway() {
     }
   }
   if (needFertilizer) useFertilizer();
-  setTimer(farmAway, 1000 * 60 * 5 /*60 * 3*/); // run farm func again in /*3 hours*/ 5 minutes
+  setTimeout(farmAway, 1000 * 60 * 5 /*60 * 3*/); // run farm func again in /*3 hours*/ 5 minutes
 }
 
 function plant(x,y) {
