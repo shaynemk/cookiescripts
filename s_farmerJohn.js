@@ -54,7 +54,7 @@ function farmAway() {
     }
   }
   if (needFertilizer) useFertilizer();
-  //gameNote("Done farming for now.");
+  debugLog("Done farming for now.");
   //setTimeout(farmAway, 1000 * 60 * 5 /*60 * 3*/); // run farm func again in /*3 hours*/ 5 minutes
 }
 
