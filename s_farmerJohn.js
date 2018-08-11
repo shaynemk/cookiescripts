@@ -57,7 +57,7 @@ function harvest(x,y) {
 function useFertilizer() {
   farmM.soil = soilFertilizer.id;
   debugLog("Set soil type to fertilizer.");
-  setTimeout(useClay, 1000 * 60 * 9); // 9 minutes = 3 ticks @ 3min/ticks (fertilizer) = thumbcorn maturation
+  //setTimeout(useClay, 1000 * 60 * 9); // 9 minutes = 3 ticks @ 3min/ticks (fertilizer) = thumbcorn maturation
 }
 
 function useClay() {
