@@ -8,7 +8,7 @@ var soilClay = farmM.soils["clay"];
 var currentTile;
 var currentPlant;
 var xDEBUG = true;
-var xDebugPrefix = "[Farmer John Says:] ";
+var xDebugPrefix = "[Farmer John] ";
 var needFertilizer = false;
 
 function farmAway() {
@@ -85,7 +85,7 @@ function debugLog(message) {
 }
 
 function gameNote(message) {
-  Game.Note("Farmer John",message);
+  Game.Note(xDebugPrefix,message);
 }
 
 if (!farm.minigameLoaded && !farm.freeze) {
