@@ -54,6 +54,7 @@ function farmAway() {
     }
   }
   if (needFertilizer) useFertilizer();
+  gameNote("Done farming for now.");
   setTimeout(farmAway, 1000 * 60 * 5 /*60 * 3*/); // run farm func again in /*3 hours*/ 5 minutes
 }
 
@@ -83,8 +84,12 @@ function debugLog(message) {
   if (xDEBUG) console.log(xDebugPrefix + message);
 }
 
+function gameNote(message) {
+  Game.Note("Farmer John",message);
+}
+
 if (!farm.minigameLoaded && !farm.freeze) {
-  Game.Note("Farmer John","Farming not enabled yet (or frozen), buy/upgrade some farms or unfreeze!");
+  gameNote("Farming not enabled yet (or frozen), buy/upgrade some farms or unfreeze!");
 } else {
   debugLog("Congrats, you can farm shit now.");
   farmAway();
