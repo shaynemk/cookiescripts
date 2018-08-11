@@ -12,20 +12,10 @@ var xDebugPrefix = "[Farmer John] ";
 var needFertilizer = false;
 
 function farmAway() {
-  //farmM.tools.harvestAll.func();
-  //farmM.soil = soilFertilizer.id;
-  //debugLog("Set soil type to fertilizer.");
   if (!plantThumbcorn.unlocked) {
-    //plant bakers wheat in correct orientation to get thumbcorn
-    //use wood chips if possible (>300)
     mySeed = plantBakerWheat;
     debugLog("Selected Baker's Wheat instead of Thumbcorn, fucking pleb.");
-  } else {
-    //plant thumbcorn in all plots
-    //use fertilizer until fully grown
-    //use clay when mature
-    mySeed = plantThumbcorn;
-  }
+  } else mySeed = plantThumbcorn;
   farm.seedSelected = mySeed.id;
   needFertilizer = false;
   for (x=0;x<6;x++) {
@@ -37,15 +27,7 @@ function farmAway() {
           if (currentTile[1] < 95 && currentPlant.id == farm.seedSelected) { // plant is too young...i think this is out of 100? not sure.
             debugLog(currentPlant.name + " in (" + x + "," + y + ") age is < 95, skipping.");
             continue;
-          }// else if (currentTile[1] >= 95) { // if the plant is old enough, replant
-            //farmM.tools.harvestAll.func();
-            //x=0;
-            //y=0;
-            //harvest(x,y);
-            //plant(x,y);
-          /*}*/ else /*if (currentPlant.id != farm.seedSelected)*/ { // plant is old enough and/or not the same seed planted
-            //farmM.harvest(x,y);
-            //debugLog("Plot (" + x + ", " + y + ") had " + currentPlant.name + " planted");
+          } else {
             harvest(x,y);
             plant(x,y);
           }
@@ -55,7 +37,6 @@ function farmAway() {
   }
   if (needFertilizer) useFertilizer();
   debugLog("Done farming for now.");
-  //setTimeout(farmAway, 1000 * 60 * 5 /*60 * 3*/); // run farm func again in /*3 hours*/ 5 minutes
 }
 
 function plant(x,y) {
@@ -84,15 +65,10 @@ function debugLog(message) {
   if (xDEBUG) console.log(xDebugPrefix + message);
 }
 
-function gameNote(message) {
-  Game.Note(xDebugPrefix,message);
-}
-
 if (!farm.minigameLoaded && !farm.freeze) {
-  gameNote("Farming not enabled yet (or frozen), buy/upgrade some farms or unfreeze!");
+  Game.Note(xDebugPrefix,"Farming not enabled yet (or frozen), buy/upgrade some farms or unfreeze!");
 } else {
   debugLog("Congrats, you can farm shit now.");
   farmAway();
   setInterval(farmAway, 1000 * 60 * 5); // run every 5 minutes
 }
-
