@@ -17,11 +17,7 @@ fj.init = function() {
 }
 
 fj.start = function() {
-  if (!fj.plantThumbcorn.unlocked) {
-    fj.seed = fj.plantBakerWheat;
-    fj.debugLog("Selected Baker's Wheat instead of Thumbcorn, fucking pleb.");
-  } else fj.seed = fj.plantThumbcorn;
-  //fj.farmM.seedSelected = fj.seed.id;
+  if (!fj.plantThumbcorn.unlocked) fj.debugLog("Selected Baker's Wheat instead of Thumbcorn, fucking pleb.");
   fj.needFertilizer = false;
   for (x=0;x<6;x++) {
     for (y=0;y<6;y++) {
