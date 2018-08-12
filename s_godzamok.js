@@ -8,7 +8,7 @@ function fireDragonMagic() {
 }
 
 function startTheFire() {
-  fireDragonMagic();
+  //fireDragonMagic(); // remove this to ensure that FC loads in first
   FireBreathID = setInterval(fireDragonMagic, 10100);
 }
 
