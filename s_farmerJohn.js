@@ -29,19 +29,16 @@ fj.start = function() {
         fj.currentTile = fj.farmM.getTile(x,y);
         if (fj.currentTile[0] >= 1) { // is something there
           fj.currentPlant = fj.farmM.plantsById[fj.currentTile[0]-1];
-          if (fj.currentTile[1] < 95 && fj.currentPlant.id == fj.seed.id) { // plant is too young...i think this is out of 100? not sure.
-            fj.debugLog(fj.currentPlant.name + " in (" + x + "," + y + ") age is < 95, skipping.");
-            continue;
-          } else if (fj.currentTile[1] >= 20) {
+          if (fj.currentTile[1] < 95 && fj.farmM.soil == fj.soilClay.id && fj.currentPlant.id == fj.seed.id) { // plant is too young...i think this is out of 100? not sure.
+            fj.debugLog(fj.currentPlant.name + " in (" + x + "," + y + ") has no pending action, skipping.");
+            //continue;
+          } else if (fj.currentTile[1] >= 20 && fj.farmM.soil == fj.soilFertilizer.id) {
             fj.clearFertilizerT();
             fj.useClay();
           } else {
-            //harvest(x,y);
-            //plant(x,y);
             fj.farmM.tools.harvestAll.func();
             fj.plantAll();
           }
-          //if (currentTile[1] >= 19) numMature = numMature + 1; // how many plants are nearly mature
         } else fj.plant(x,y); // plot was empty, plant something
       }
     }
