@@ -5,7 +5,6 @@ fjFarmM = fjFarm.minigame;
 fj.init = function() { 
   fj.plantBakerWheat = fjFarmM.plants.bakerWheat;
   fj.plantThumbcorn = fjFarmM.plants.thumbcorn;
-  fj.seed;
   fj.soilFertilizer = fjFarmM.soils.fertilizer;
   fj.soilClay = fjFarmM.soils.clay;
   fj.currentTile;
@@ -13,6 +12,7 @@ fj.init = function() {
   fj.xDEBUG = true;
   fj.xDebugPrefix = "[Farmer John] ";
   fj.needFertilizer = false;
+  fj.seed = (fj.plantThumbcorn.unlocked?fj.plantThumbcorn:fj.plantBakerWheat);
 }
 
 fj.start = function() {
@@ -55,7 +55,7 @@ fj.plantAll = function() {
 }
 
 fj.plant = function(x,y) {
-  fjFarmM.useTool(fjFarm.seedSelected,x,y);
+  fjFarmM.useTool(fj.seed.id,x,y);
   fj.needFertilizer = true;
   fj.debugLog("Planted " + fj.seed.name + " in plot (" + x + ", " + y + ").");
 }
