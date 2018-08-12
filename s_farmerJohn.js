@@ -1,6 +1,4 @@
 var fj = {};
-//fj.farm = Game.Objects.Farm;
-//fj.farmM = fj.farm.minigame;
 
 fj.init = function() { 
   fj.farm = Game.Objects.Farm;
@@ -9,11 +7,12 @@ fj.init = function() {
   fj.plantThumbcorn = fj.farmM.plants.thumbcorn;
   fj.soilFertilizer = fj.farmM.soils.fertilizer;
   fj.soilClay = fj.farmM.soils.clay;
-  fj.currentTile;
-  fj.currentPlant;
+  //fj.currentTile;
+  //fj.currentPlant;
   fj.xDEBUG = true;
   fj.xDebugPrefix = "[Farmer John] ";
   fj.needFertilizer = false;
+  fj.fertilizerID = -1;
   fj.seed = (fj.plantThumbcorn.unlocked?fj.plantThumbcorn:fj.plantBakerWheat);
 }
 
@@ -33,6 +32,9 @@ fj.start = function() {
           if (fj.currentTile[1] < 95 && fj.currentPlant.id == fj.seed.id) { // plant is too young...i think this is out of 100? not sure.
             fj.debugLog(fj.currentPlant.name + " in (" + x + "," + y + ") age is < 95, skipping.");
             continue;
+          } else if (fj.currentTile[1] >= 20) {
+            fj.clearFertilizerT();
+            fj.useClay();
           } else {
             //harvest(x,y);
             //plant(x,y);
@@ -67,10 +69,17 @@ fj.harvest = function(x,y) {
   fj.farmM.harvest(x,y);
 }
 
+fj.clearFertilizerT = function() {
+  clearTimeout(fj.fertilizerID);
+  fj.fertilizerID = -1;
+}
+
 fj.useFertilizer = function() {
+  // make sure we dont have any other timers running
+  if (fj.fertilizerID != -1) fj.clearFertilizerT();
   fj.farmM.soil = fj.soilFertilizer.id;
   fj.debugLog("Set soil type to fertilizer.");
-  setTimeout(fj.useClay, 1000 * 60 * 9); // 9 minutes = 3 ticks @ 3min/ticks (fertilizer) = thumbcorn maturation
+  fj.fertilizerID = setTimeout(fj.useClay, 1000 * 60 * 9); // 9 minutes = 3 ticks @ 3min/ticks (fertilizer) = thumbcorn maturation
 }
 
 fj.useClay = function() {
@@ -92,5 +101,5 @@ if (!fj.farm.minigameLoaded && !fj.farm.freeze) {
 } else {
   fj.debugLog("Congrats, you can farm shit now.");
   fj.start();
-  fj.intervalID = setInterval(fj.start, 1000 * 60 * 2); // run every couple minutes
+  fj.intervalID = setInterval(fj.start, 1000 * 60 * 1); // run every couple minutes
 }
