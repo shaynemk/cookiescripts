@@ -1,10 +1,10 @@
-var farm = Game.Objects["Farm"];
+var farm = Game.Objects.Farm;
 var farmM = farm.minigame;
 var plantBakerWheat = farmM.plants.bakerWheat;
 var plantThumbcorn = farmM.plants.thumbcorn;
 var mySeed;
-var soilFertilizer = farmM.soils["fertilizer"];
-var soilClay = farmM.soils["clay"];
+var soilFertilizer = farmM.soils.fertilizer;
+var soilClay = farmM.soils.clay;
 var currentTile;
 var currentPlant;
 var xDEBUG = true;
@@ -30,17 +30,27 @@ function farmAway() {
             debugLog(currentPlant.name + " in (" + x + "," + y + ") age is < 95, skipping.");
             continue;
           } else {
-            harvest(x,y);
-            plant(x,y);
+            //harvest(x,y);
+            //plant(x,y);
+            farmM.tools.harvestAll.func();
+            plantAll();
           }
-          if (currentTile[1] >= 19) numMature = numMature + 1; // how many plants are nearly mature
+          //if (currentTile[1] >= 19) numMature = numMature + 1; // how many plants are nearly mature
         } else plant(x,y); // plot was empty, plant something
       }
     }
   }
   if (needFertilizer) useFertilizer();
-  if (numMature >= numMajority) useClay();
+  //if (numMature >= numMajority) useClay();
   debugLog("Done farming for now.");
+}
+
+function plantAll() {
+  for (x=0;x<6;x++) {
+    for (y=0;y<6;y++){
+      plant(x,y);
+    }
+  }
 }
 
 function plant(x,y) {
@@ -57,7 +67,7 @@ function harvest(x,y) {
 function useFertilizer() {
   farmM.soil = soilFertilizer.id;
   debugLog("Set soil type to fertilizer.");
-  //setTimeout(useClay, 1000 * 60 * 9); // 9 minutes = 3 ticks @ 3min/ticks (fertilizer) = thumbcorn maturation
+  setTimeout(useClay, 1000 * 60 * 9); // 9 minutes = 3 ticks @ 3min/ticks (fertilizer) = thumbcorn maturation
 }
 
 function useClay() {
