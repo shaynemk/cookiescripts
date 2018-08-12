@@ -13,15 +13,19 @@ FrozenCookies.autoBuy = 0;
 stopTheFire();
 
 // sell everything
-for (var x = 0; x < Game.ObjectsById.length; x++) {
+/*for (var x = 0; x < Game.ObjectsById.length; x++) {
   Game.ObjectsById[x].sell(Game.ObjectsById[x].amount);
-}
+}*/
+Game.ObjectsById.foreach (function (b){
+  b.sell(-1);
+});
 
 // buy chocolate egg
-
+Game.Upgrades["Chocolate egg"].buy();
 
 // ascend and return
-
+Game.Ascend(true);
+Game.Reincarnate (true);
 
 // enable FC & Godzamok scripts
 FrozenCookies.autoBuy = 1;
