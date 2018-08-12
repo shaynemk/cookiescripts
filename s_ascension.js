@@ -3,8 +3,8 @@ var godMazok = Game.Objects["Temple"].minigame.gods["ruin"];
 var godMuridal = Game.Objects["Temple"].minigame.gods["labor"];
 
 // check for chocolate egg
-if (!Game.Upgrades["Chocolate egg"].unlocked) {
-  Game.Note("Auto Ascension Error", "No chocolate egg available!!! Aborting.");
+if (!Game.Upgrades["Chocolate egg"].unlocked || !Game.Upgrades["Chocolate egg"].canBuy()) {
+  Game.Note("Auto Ascension Error", "Chocolate Egg not available to can't buy it, aborting.");
   break fin;
 }
 
