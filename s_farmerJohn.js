@@ -1,12 +1,14 @@
 var fj = {};
-fjFarm = Game.Objects.Farm;
-fjFarmM = fjFarm.minigame;
+//fj.farm = Game.Objects.Farm;
+//fj.farmM = fj.farm.minigame;
 
 fj.init = function() { 
-  fj.plantBakerWheat = fjFarmM.plants.bakerWheat;
-  fj.plantThumbcorn = fjFarmM.plants.thumbcorn;
-  fj.soilFertilizer = fjFarmM.soils.fertilizer;
-  fj.soilClay = fjFarmM.soils.clay;
+  fj.farm = Game.Objects.Farm;
+  fj.farmM = fj.farm.minigame;
+  fj.plantBakerWheat = fj.farmM.plants.bakerWheat;
+  fj.plantThumbcorn = fj.farmM.plants.thumbcorn;
+  fj.soilFertilizer = fj.farmM.soils.fertilizer;
+  fj.soilClay = fj.farmM.soils.clay;
   fj.currentTile;
   fj.currentPlant;
   fj.xDEBUG = true;
@@ -20,21 +22,21 @@ fj.start = function() {
     fj.seed = fj.plantBakerWheat;
     fj.debugLog("Selected Baker's Wheat instead of Thumbcorn, fucking pleb.");
   } else fj.seed = fj.plantThumbcorn;
-  fjFarmM.seedSelected = fj.seed.id;
+  //fj.farmM.seedSelected = fj.seed.id;
   fj.needFertilizer = false;
   for (x=0;x<6;x++) {
     for (y=0;y<6;y++) {
-      if (fjFarmM.isTileUnlocked(x,y)) { // check if the tile is unlocked
-        fj.currentTile = fjFarmM.getTile(x,y);
+      if (fj.farmM.isTileUnlocked(x,y)) { // check if the tile is unlocked
+        fj.currentTile = fj.farmM.getTile(x,y);
         if (fj.currentTile[0] >= 1) { // is something there
-          fj.currentPlant = fjFarmM.plantsById[fj.currentTile[0]-1];
-          if (fj.currentTile[1] < 95 && fj.currentPlant.id == fjFarmM.seedSelected) { // plant is too young...i think this is out of 100? not sure.
+          fj.currentPlant = fj.farmM.plantsById[fj.currentTile[0]-1];
+          if (fj.currentTile[1] < 95 && fj.currentPlant.id == fj.seed.id) { // plant is too young...i think this is out of 100? not sure.
             fj.debugLog(fj.currentPlant.name + " in (" + x + "," + y + ") age is < 95, skipping.");
             continue;
           } else {
             //harvest(x,y);
             //plant(x,y);
-            fjFarmM.tools.harvestAll.func();
+            fj.farmM.tools.harvestAll.func();
             fj.plantAll();
           }
           //if (currentTile[1] >= 19) numMature = numMature + 1; // how many plants are nearly mature
@@ -49,30 +51,30 @@ fj.start = function() {
 fj.plantAll = function() {
   for (x=0;x<6;x++) {
     for (y=0;y<6;y++){
-      if (fjFarmM.isTileUnlocked(x,y)) fj.plant(x,y); // because we dont want to actually cheat
+      if (fj.farmM.isTileUnlocked(x,y)) fj.plant(x,y); // because we dont want to actually cheat
     }
   }
 }
 
 fj.plant = function(x,y) {
-  fjFarmM.useTool(fj.seed.id,x,y);
+  fj.farmM.useTool(fj.seed.id,x,y);
   fj.needFertilizer = true;
   fj.debugLog("Planted " + fj.seed.name + " in plot (" + x + ", " + y + ").");
 }
 
 fj.harvest = function(x,y) {
   fj.debugLog("Harvested " + fj.currentPlant.name + " in plot (" + x + ", " + y + ").");
-  fjFarmM.harvest(x,y);
+  fj.farmM.harvest(x,y);
 }
 
 fj.useFertilizer = function() {
-  fjFarmM.soil = fj.soilFertilizer.id;
+  fj.farmM.soil = fj.soilFertilizer.id;
   fj.debugLog("Set soil type to fertilizer.");
   setTimeout(fj.useClay, 1000 * 60 * 9); // 9 minutes = 3 ticks @ 3min/ticks (fertilizer) = thumbcorn maturation
 }
 
 fj.useClay = function() {
-  fjFarmM.soil = fj.soilClay.id;
+  fj.farmM.soil = fj.soilClay.id;
   fj.debugLog("Set soil type to clay.");
 }
 
@@ -85,7 +87,7 @@ fj.stop = function() {
 }
 
 fj.init();
-if (!fjFarm.minigameLoaded && !fjFarm.freeze) {
+if (!fj.farm.minigameLoaded && !fj.farm.freeze) {
   Game.Note(fj.xDebugPrefix,"Farming not enabled yet (or frozen), buy/upgrade some farms or unfreeze!");
 } else {
   fj.debugLog("Congrats, you can farm shit now.");
