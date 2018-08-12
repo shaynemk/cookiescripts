@@ -48,7 +48,7 @@ function farmAway() {
 function plantAll() {
   for (x=0;x<6;x++) {
     for (y=0;y<6;y++){
-      plant(x,y);
+      if (farmM.isTileUnlocked(x,y)) plant(x,y); // because we dont want to actually cheat
     }
   }
 }
@@ -84,5 +84,5 @@ if (!farm.minigameLoaded && !farm.freeze) {
 } else {
   debugLog("Congrats, you can farm shit now.");
   farmAway();
-  setInterval(farmAway, 1000 * 60 * 3); // run every 5 minutes
+  setInterval(farmAway, 1000 * 60 * 2); // run every couple minutes
 }
