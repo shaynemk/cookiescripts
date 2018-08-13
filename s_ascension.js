@@ -22,7 +22,6 @@ AA.ascend = function() {
 
     // ascend and then wait to return and complete
     Game.Ascend(true);
-    setTimeout(function(){Game.Reincarnate(true);},1000*10);
     
     setTimeout(function(){
       // return
@@ -45,7 +44,7 @@ AA.ascend = function() {
       if (Game.Upgrades["Bunny biscuit"].unlocked && Game.Upgrades["Bunny biscuit"].bought === 0) Game.Upgrades["Bunny biscuit"].buy()
 
       // train krumblor and set the bonuses
-      setTimeout(AA.krumblor.train(),1000*60*5);
+      setTimeout(AA.krumblor.train(),1000*60*2);
     },1000*10); // delay for the ascension animation
   }
 }
