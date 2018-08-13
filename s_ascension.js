@@ -11,6 +11,7 @@ AA.ascend = function() {
     // disable FC && godzamok scripts
     if (typeof FrozenCookies != "undefined") FrozenCookies.autoBuy = 0;
     if (typeof Destructo != "undefined") Destructo.stop();
+    if (typeof fj != "undefined") fj.stop();
 
     // sell everything
     for (var x = 0; x < Game.ObjectsById.length; x++) {
@@ -27,13 +28,14 @@ AA.ascend = function() {
     // enable FC & Godzamok scripts
     FrozenCookies.autoBuy = 1;
     Destructo.start();
+    fj.start();
 
     // set the gods in pantheon
     AA.pantheon.slot[0]=AA.godMazok.id;
     AA.pantheon.slot[1]=AA.godMuridal.id;
 
     // help FC with the sheer speed of upgrades available
-    Game.storeBuyAll();
+    //Game.storeBuyAll();
     setTimeout(clearInterval(setInterval(Game.storeBuyAll(),5),1000 * 20)); // buy all upgrades every 5 seconds for 20 seconds
   }
 }
