@@ -8,7 +8,6 @@ Destructo.magic = function() {
 }
 
 Destructo.start = function() {
-  Destructo.magic();
   Destructo.intervalID = setInterval(Destructo.magic, 10100);
 }
 
