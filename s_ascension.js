@@ -3,12 +3,6 @@ var AA = {};
 AA.ascend = function() {
   if ((!Game.Upgrades["Chocolate egg"].unlocked || !Game.Upgrades["Chocolate egg"].canBuy())) Game.Note("Angelic Ascension: Error", "Chocolate Egg either not available or can't buy it, aborting.");
   else {
-    // init AA
-    AA.pantheon = Game.Objects.Temple.minigame;
-    AA.godMazok = Game.Objects.Temple.minigame.gods.ruin;
-    AA.godMuridal = Game.Objects.Temple.minigame.gods.labor;
-    AA.debugPrefix = "[Angelic Ascension] ";
-    
     // disable FC && godzamok scripts
     if (typeof FrozenCookies != "undefined") FrozenCookies.autoBuy = 0;
     if (typeof Destructo != "undefined") Destructo.stop();
@@ -41,4 +35,12 @@ AA.ascend = function() {
   }
 }
 
+
+// init AA
+AA.pantheon = Game.Objects.Temple.minigame;
+AA.godMazok = Game.Objects.Temple.minigame.gods.ruin;
+AA.godMuridal = Game.Objects.Temple.minigame.gods.labor;
+AA.debugPrefix = "[Angelic Ascension] ";
+
+// notify user in console how to operate
 console.log(AA.debugPrefix+"Run 'AA.ascend();' to ascend.");
