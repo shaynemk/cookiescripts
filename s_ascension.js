@@ -7,6 +7,7 @@ AA.ascend = function() {
     AA.pantheon = Game.Objects.Temple.minigame;
     AA.godMazok = Game.Objects.Temple.minigame.gods.ruin;
     AA.godMuridal = Game.Objects.Temple.minigame.gods.labor;
+    AA.debugPrefix = "[Angelic Ascension] ";
     
     // disable FC && godzamok scripts
     if (typeof FrozenCookies != "undefined") FrozenCookies.autoBuy = 0;
@@ -40,4 +41,4 @@ AA.ascend = function() {
   }
 }
 
-console.log("Run 'AA.ascend();' to ascend.");
+console.log(AA.debugPrefix+"Run 'AA.ascend();' to ascend.");
