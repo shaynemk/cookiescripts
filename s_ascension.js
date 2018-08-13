@@ -38,7 +38,7 @@ AA.ascend = function() {
     if (Game.Upgrades["Bunny biscuit"].unlocked && Game.Upgrades["Bunny biscuit"].bought === 0) Game.Upgrades["Bunny biscuit"].buy()
     
     // train krumblor and set the bonuses
-    setTimeout(AA.krumblor.train(),1000*60*5);
+    setTimeout(AA.krumblor.train(),1000*60*1);
   }
 }
 
