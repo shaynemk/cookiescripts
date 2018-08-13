@@ -1,4 +1,5 @@
 var AA = {};
+AA.krumblor = {};
 
 AA.ascend = function() {
   if ((!Game.Upgrades["Chocolate egg"].unlocked || !Game.Upgrades["Chocolate egg"].canBuy())) Game.Note("Angelic Ascension: Error", "Chocolate Egg either not available or can't buy it, aborting.");
@@ -32,9 +33,26 @@ AA.ascend = function() {
     // help FC with the sheer speed of upgrades available
     //Game.storeBuyAll();
     setTimeout(clearInterval(setInterval(Game.storeBuyAll(),5),1000 * 20)); // buy all upgrades every 5 seconds for 20 seconds
+    
+    // start with easter season to get the chocolate egg for when we next ascend
+    if (Game.Upgrades["Bunny biscuit"].unlocked && Game.Upgrades["Bunny biscuit"].bought === 0) Game.Upgrades["Bunny biscuit"].buy()
+    
+    // train krumblor and set the bonuses
+    setTimeout(AA.krumblor.train(),1000*60*5);
   }
 }
 
+AA.krumblor.train = function() {
+  AA.krumblor.aura1 = 1; // breath of milk
+  AA.krumblor.aura2 = 15; // radiant appetite
+  
+  for(x=Game.dragonLevel;x<Game.dragonLevels.length;x++) {
+    Game.UpgradeDragon();
+  }
+  
+  Game.dragonAura2 = AA.krumblor.aura1;
+  Game.dragonAura = AA.krumblor.aura2;
+}
 
 // init AA
 AA.pantheon = Game.Objects.Temple.minigame;
