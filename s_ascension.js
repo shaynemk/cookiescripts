@@ -17,28 +17,32 @@ AA.ascend = function() {
     // buy chocolate egg
     Game.Upgrades["Chocolate egg"].buy();
 
-    // ascend and return
+    // ascend and then wait to return and complete
     Game.Ascend(true);
-    Game.Reincarnate (true);
-
-    // enable FC & Godzamok scripts
-    FrozenCookies.autoBuy = 1;
-    Destructo.start();
-    fj.start();
-
-    // set the gods in pantheon
-    AA.pantheon.slot[0]=AA.godMazok.id;
-    AA.pantheon.slot[1]=AA.godMuridal.id;
-
-    // help FC with the sheer speed of upgrades available
-    //Game.storeBuyAll();
-    setTimeout(clearInterval(setInterval(Game.storeBuyAll(),5),1000 * 20)); // buy all upgrades every 5 seconds for 20 seconds
     
-    // start with easter season to get the chocolate egg for when we next ascend
-    if (Game.Upgrades["Bunny biscuit"].unlocked && Game.Upgrades["Bunny biscuit"].bought === 0) Game.Upgrades["Bunny biscuit"].buy()
-    
-    // train krumblor and set the bonuses
-    setTimeout(AA.krumblor.train(),1000*60*1);
+    setTimeout(function(){
+      // return
+      Game.Reincarnate (true);
+      
+      // enable FC & Godzamok scripts
+      FrozenCookies.autoBuy = 1;
+      Destructo.start();
+      fj.start();
+
+      // set the gods in pantheon
+      AA.pantheon.slot[0]=AA.godMazok.id;
+      AA.pantheon.slot[1]=AA.godMuridal.id;
+
+      // help FC with the sheer speed of upgrades available
+      //Game.storeBuyAll();
+      setTimeout(clearInterval(setInterval(Game.storeBuyAll(),5),1000 * 20)); // buy all upgrades every 5 seconds for 20 seconds
+
+      // start with easter season to get the chocolate egg for when we next ascend
+      if (Game.Upgrades["Bunny biscuit"].unlocked && Game.Upgrades["Bunny biscuit"].bought === 0) Game.Upgrades["Bunny biscuit"].buy()
+
+      // train krumblor and set the bonuses
+      setTimeout(AA.krumblor.train(),1000*60*1);
+    },1000*15); //wait 15s for the ascension view
   }
 }
 
