@@ -41,14 +41,16 @@ AA.ascend = function() {
       if (Game.Upgrades["Bunny biscuit"].unlocked && Game.Upgrades["Bunny biscuit"].bought === 0) Game.Upgrades["Bunny biscuit"].buy()
 
       // train krumblor and set the bonuses
-      setTimeout(AA.krumblor.train(),1000*60*1);
-    },1000*15); //wait 15s for the ascension view
+      setTimeout(AA.krumblor.train(),1000*60*5);
+    },1000*10); // delay for the ascension animation
   }
 }
 
 AA.krumblor.train = function() {
   AA.krumblor.aura1 = 1; // breath of milk
   AA.krumblor.aura2 = 15; // radiant appetite
+  
+  if (Game.Upgrades["A crumbly egg"].unlocked && !Game.Upgrades["A crumbly egg"].bought) Game.Upgrades["A crumbly egg"].buy();
   
   for(x=Game.dragonLevel;x<Game.dragonLevels.length;x++) {
     Game.UpgradeDragon();
