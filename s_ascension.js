@@ -1,7 +1,7 @@
 var AA = {};
 
 AA.ascend = function() {
-  if (!(!Game.Upgrades["Chocolate egg"].unlocked || !Game.Upgrades["Chocolate egg"].canBuy())) Game.Note("Angelic Ascension: Error", "Chocolate Egg either not available or can't buy it, aborting.");
+  if ((!Game.Upgrades["Chocolate egg"].unlocked || !Game.Upgrades["Chocolate egg"].canBuy())) Game.Note("Angelic Ascension: Error", "Chocolate Egg either not available or can't buy it, aborting.");
   else {
     // init AA
     AA.pantheon = Game.Objects.Temple.minigame;
