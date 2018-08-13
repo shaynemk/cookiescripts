@@ -25,13 +25,15 @@ fj.farmNow = function() {
         fj.currentTile = fj.farmM.getTile(x,y);
         if (fj.currentTile[0] >= 1) { // is something there
           fj.currentPlant = fj.farmM.plantsById[fj.currentTile[0]-1];
-          if (fj.currentTile[1] < 95 && fj.farmM.soil == fj.soilClay.id && fj.currentPlant.id == fj.seed.id) { // plant is too young...i think this is out of 100? not sure.
+          if (fj.currentTile[1] < 95 && fj.farmM.soil == fj.soilClay.id && fj.currentPlant.id == fj.seed.id) {
+            // plant is too youngfor anything, wait for later
             fj.debugLog(fj.currentPlant.name + " in (" + x + "," + y + ") has no pending action, skipping.");
-            //continue;
           } else if (fj.currentTile[1] >= 20 && fj.farmM.soil == fj.soilFertilizer.id) {
+            // plants have matured, but still using fertilizer
             fj.clearFertilizerT();
             fj.useClay();
-          } else {
+          } else if (fj.currentTile[1] >= 95 && fj.farmM.soil == fj.soilClay.id) {
+            // plant has grown old, and we are using clay: time to harvest and replant
             fj.farmM.tools.harvestAll.func();
             fj.plantAll();
           }
