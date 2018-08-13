@@ -8,6 +8,9 @@ AA.ascend = function() {
     if (typeof FrozenCookies != "undefined") FrozenCookies.autoBuy = 0;
     if (typeof Destructo != "undefined") Destructo.stop();
     if (typeof fj != "undefined") fj.stop();
+    
+    // set bldg sell bonus for krumblor
+    Game.dragonAura = AA.krumblor.ascendAura;
 
     // sell everything
     for (var x = 0; x < Game.ObjectsById.length; x++) {
@@ -19,6 +22,7 @@ AA.ascend = function() {
 
     // ascend and then wait to return and complete
     Game.Ascend(true);
+    setTimeout(function(){Game.Reincarnate(true);},1000*10);
     
     setTimeout(function(){
       // return
@@ -33,9 +37,9 @@ AA.ascend = function() {
       AA.pantheon.slot[0]=AA.godMazok.id;
       AA.pantheon.slot[1]=AA.godMuridal.id;
 
-      // help FC with the sheer speed of upgrades available
-      //Game.storeBuyAll();
-      setTimeout(clearInterval(setInterval(Game.storeBuyAll(),5),1000 * 20)); // buy all upgrades every 5 seconds for 20 seconds
+      // buy all upgrades every 5 seconds for 20 seconds
+      AA.intervalID = setInterval(Game.storeBuyAll(),1000*5)
+      setTimeout(clearInterval(AA.intervalID,1000 * 20)); 
 
       // start with easter season to get the chocolate egg for when we next ascend
       if (Game.Upgrades["Bunny biscuit"].unlocked && Game.Upgrades["Bunny biscuit"].bought === 0) Game.Upgrades["Bunny biscuit"].buy()
@@ -47,9 +51,6 @@ AA.ascend = function() {
 }
 
 AA.krumblor.train = function() {
-  AA.krumblor.aura1 = 1; // breath of milk
-  AA.krumblor.aura2 = 15; // radiant appetite
-  
   if (Game.Upgrades["A crumbly egg"].unlocked && !Game.Upgrades["A crumbly egg"].bought) Game.Upgrades["A crumbly egg"].buy();
   
   for(x=Game.dragonLevel;x<Game.dragonLevels.length;x++) {
@@ -65,6 +66,11 @@ AA.pantheon = Game.Objects.Temple.minigame;
 AA.godMazok = Game.Objects.Temple.minigame.gods.ruin;
 AA.godMuridal = Game.Objects.Temple.minigame.gods.labor;
 AA.debugPrefix = "[Angelic Ascension] ";
+
+// init krumblor
+AA.krumblor.aura1 = 1; // breath of milk
+AA.krumblor.aura2 = 15; // radiant appetite
+AA.krumblor.ascendAura = 5; // earth shatterer
 
 // notify user in console how to operate
 console.log(AA.debugPrefix+"Run 'AA.ascend();' to ascend.");
