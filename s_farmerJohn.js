@@ -9,14 +9,14 @@ fj.init = function() {
   fj.soilClay = fj.farmM.soils.clay;
   //fj.currentTile;
   //fj.currentPlant;
-  fj.xDEBUG = true;
+  fj.xDebug = false;
   fj.xDebugPrefix = "[Farmer John] ";
   fj.needFertilizer = false;
   fj.fertilizerID = -1;
   fj.seed = (fj.plantThumbcorn.unlocked?fj.plantThumbcorn:fj.plantBakerWheat);
 }
 
-fj.start = function() {
+fj.farmNow = function() {
   if (!fj.plantThumbcorn.unlocked) fj.debugLog("Selected Baker's Wheat instead of Thumbcorn, fucking pleb.");
   fj.needFertilizer = false;
   for (x=0;x<6;x++) {
@@ -81,11 +81,15 @@ fj.useClay = function() {
 }
 
 fj.debugLog = function(message) {
-  if (fj.xDEBUG) console.log(fj.xDebugPrefix + message);
+  if (fj.xDebug) console.log(fj.xDebugPrefix + message);
 }
 
 fj.stop = function() {
   clearInterval(fj.intervalID);
+}
+
+fj.start = function() {
+  fj.intervalID = setInterval(fj.farmNow, 1000 * 60 * 1);
 }
 
 fj.init();
@@ -93,6 +97,6 @@ if (!fj.farm.minigameLoaded && !fj.farm.freeze) {
   Game.Note(fj.xDebugPrefix,"Farming not enabled yet (or frozen), buy/upgrade some farms or unfreeze!");
 } else {
   fj.debugLog("Congrats, you can farm shit now.");
+  fj.farmNow();
   fj.start();
-  fj.intervalID = setInterval(fj.start, 1000 * 60 * 1); // run every couple minutes
 }
