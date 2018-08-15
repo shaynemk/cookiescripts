@@ -1,19 +1,18 @@
-var FireBreathID;
+var Destructo = {};
 
-function fireDragonMagic() {
+Destructo.magic = function() {
   var xOfferingsToGodzamok = 6; //how many hundreds to sell/buy
-  Game.ObjectsById[0].sell(100*xOfferingsToGodzamok);
-  if (FrozenCookies.autoBuy == 0) FrozenCookies.autoBuy = 1;
-  //console.log("Destruction was had by all who opposed.");
+  Game.ObjectsById[0].sell(100 * xOfferingsToGodzamok);
+  
+  if (typeof FrozenCookies != "undefined" && FrozenCookies.autoBuy === 0) FrozenCookies.autoBuy = 1;
 }
 
-function startTheFire() {
-  //fireDragonMagic(); // remove this to ensure that FC loads in first
-  FireBreathID = setInterval(fireDragonMagic, 10100);
+Destructo.start = function() {
+  Destructo.intervalID = setInterval(Destructo.magic, 10100);
 }
 
-function stopTheFire() {
-  clearInterval(FireBreathID);
+Destructo.stop = function() {
+  clearInterval(Destructo.intervalID);
 }
 
-startTheFire();
+Destructo.start();
