@@ -4,5 +4,6 @@ javascript:(
     Game.LoadMod('https://rawgit.com/shaynemk/cookiescripts/master/s_turboClicker.js');
     Game.LoadMod('https://rawgit.com/shaynemk/cookiescripts/master/s_godzamok.js');
     Game.LoadMod('https://rawgit.com/shaynemk/cookiescripts/master/s_farmerJohn.js');
+    Game.LoadMod('https://rawgit.com/shaynemk/cookiescripts/master/s_ascension.js');
   }()
 );
