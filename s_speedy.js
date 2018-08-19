@@ -16,8 +16,9 @@ SpeedyGonzalez.bldgFrenzy = function() {
   Game.buffs.every(function(x) {
     if (Game.buffs[bldg].type.name=="building buff") bldgExists = true;
   });
+  //bldgExists = Game.buffs.some(bldg => bldg.type.name == "building buff");
   return bldgExists;
-}
+} //why wont anything work!?
 
 SpeedyGonzalez.clickFrenzy = function() {
   // return click frenzy status
