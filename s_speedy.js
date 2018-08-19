@@ -12,10 +12,11 @@ SpeedyGonzalez.bldgFrenzy = function() {
 //     if (Game.buffs[bldg].type.name=="building buff") return true;
 //   }
 //   return false;
+  var bldgExists = false;
   Game.buffs.every(function(x) {
-    if (Game.buffs[bldg].type.name=="building buff") return true;
-    else return false;
+    if (Game.buffs[bldg].type.name=="building buff") bldgExists = true;
   });
+  return bldgExists;
 }
 
 SpeedyGonzalez.clickFrenzy = function() {
@@ -39,7 +40,7 @@ SpeedyGonzalez.run = function() {
 
 SpeedyGonzalez.start = function() {
   SpeedyGonzalez.init();
-  SpeedyGonzalez.intervalID = setInterval(SpeedyGonzalez.run, 1000 * 1);
+  SpeedyGonzalez.intervalID = setInterval(SpeedyGonzalez.run, 1000 * 5);
   SpeedyGonzalez.dLog("Initialized.");
 }
 
