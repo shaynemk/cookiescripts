@@ -28,9 +28,9 @@ SpeedyGonzalez.dLog = function(msg) {
 }
 
 SpeedyGonzalez.run = function() {
-  if(SpeedyGonzalez.frenzy && SpeedyGonzalez.bldgFrenzy && SpeedyGonzalez.clickFrenzy) {
+  if(SpeedyGonzalez.frenzy() && SpeedyGonzalez.bldgFrenzy() && SpeedyGonzalez.clickFrenzy()) {
     FrozenCookies.fpsModifier = SpeedyGonzalez.fpsFrenzy;
-    SpeedyGonzalez.dLog("Set FPS to Frenzy.(24)");
+    SpeedyGonzalez.dLog("Set FPS to Frenzy (24).");
   } else {
     FrozenCookies.fpsModifier = SpeedyGonzalez.fpsNormal;
     SpeedyGonzalez.dLog("Set FPS to Normal (300).");
