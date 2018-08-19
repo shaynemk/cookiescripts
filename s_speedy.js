@@ -28,11 +28,6 @@ SpeedyGonzalez.dLog = function(msg) {
 }
 
 SpeedyGonzalez.run = function() {
-  //default to 300fps
-  //detect if there is a Building Frenzy + Frenzy/Click Frenzy + Frenzy active
-  //if so, switch to 24 FPS until duration of Building Frenzy/Click Frenzy
-  //then switch back to 300
-  
   if(SpeedyGonzalez.frenzy && SpeedyGonzalez.bldgFrenzy && SpeedyGonzalez.clickFrenzy) {
     FrozenCookies.fpsModifier = SpeedyGonzalez.fpsFrenzy;
     SpeedyGonzalez.dLog("Set FPS to Frenzy.(24)");
@@ -43,6 +38,7 @@ SpeedyGonzalez.run = function() {
 }
 
 SpeedyGonzalez.start = function() {
+  SpeedyGonzalez.init();
   SpeedyGonzalez.intervalID = setInterval(SpeedyGonzalez.run, 1000 * 1);
   SpeedyGonzalez.dLog("Initialized.");
 }
@@ -51,8 +47,16 @@ SpeedyGonzalez.stop = function() {
   clearInterval(SpeedyGonzalez.intervalID);
 }
 
-SpeedyGonzalez.fpsNormal = 13;
-SpeedyGonzalez.fpsFrenzy = 0;
-SpeedyGonzalez.debug = true;
-SpeedyGonzalez.debugPrefix = "[SpeedyGonzalez] ";
+SpeedyGonzalez.init = function() {
+  SpeedyGonzalez.fpsNormal = 13;
+  SpeedyGonzalez.fpsFrenzy = 0;
+  SpeedyGonzalez.debug = true;
+  SpeedyGonzalez.debugPrefix = "[SpeedyGonzalez] ";
+}
+
 SpeedyGonzalez.start();
+
+//default to 300fps
+//detect if there is a Building Frenzy + Frenzy/Click Frenzy + Frenzy active
+//if so, switch to 24 FPS until duration of Building Frenzy/Click Frenzy
+//then switch back to 300
