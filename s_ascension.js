@@ -1,6 +1,17 @@
 var AA = {};
 AA.krumblor = {};
 
+AA.krumblor.train = function() {
+  if (Game.Upgrades["A crumbly egg"].unlocked && !Game.Upgrades["A crumbly egg"].bought) Game.Upgrades["A crumbly egg"].buy();
+  
+  for(x=Game.dragonLevel;x<Game.dragonLevels.length;x++) {
+    Game.UpgradeDragon();
+  }
+  
+  Game.dragonAura2 = AA.krumblor.aura1;
+  Game.dragonAura = AA.krumblor.aura2;
+}
+
 AA.ascend = function() {
   if ((!Game.Upgrades["Chocolate egg"].unlocked || !Game.Upgrades["Chocolate egg"].canBuy())) Game.Note("Angelic Ascension: Error", "Chocolate Egg either not available or can't buy it, aborting.");
   else {
@@ -44,32 +55,25 @@ AA.ascend = function() {
       if (Game.Upgrades["Bunny biscuit"].unlocked && Game.Upgrades["Bunny biscuit"].bought === 0) Game.Upgrades["Bunny biscuit"].buy()
 
       // train krumblor and set the bonuses
-      setTimeout(AA.krumblor.train(),1000*60*2);
+      setTimeout(AA.krumblor.train,1000*60*2);
     },1000*10); // delay for the ascension animation
   }
 }
 
-AA.krumblor.train = function() {
-  if (Game.Upgrades["A crumbly egg"].unlocked && !Game.Upgrades["A crumbly egg"].bought) Game.Upgrades["A crumbly egg"].buy();
-  
-  for(x=Game.dragonLevel;x<Game.dragonLevels.length;x++) {
-    Game.UpgradeDragon();
-  }
-  
-  Game.dragonAura2 = AA.krumblor.aura1;
-  Game.dragonAura = AA.krumblor.aura2;
+AA.init = function() {
+  // init AA
+  AA.pantheon = Game.Objects.Temple.minigame;
+  AA.godMazok = Game.Objects.Temple.minigame.gods.ruin;
+  AA.godMuridal = Game.Objects.Temple.minigame.gods.labor;
+  AA.debugPrefix = "[Angelic Ascension] ";
+
+  // init krumblor
+  AA.krumblor.aura1 = 1; // breath of milk
+  AA.krumblor.aura2 = 15; // radiant appetite
+  AA.krumblor.ascendAura = 5; // earth shatterer
 }
 
-// init AA
-AA.pantheon = Game.Objects.Temple.minigame;
-AA.godMazok = Game.Objects.Temple.minigame.gods.ruin;
-AA.godMuridal = Game.Objects.Temple.minigame.gods.labor;
-AA.debugPrefix = "[Angelic Ascension] ";
 
-// init krumblor
-AA.krumblor.aura1 = 1; // breath of milk
-AA.krumblor.aura2 = 15; // radiant appetite
-AA.krumblor.ascendAura = 5; // earth shatterer
-
+AA.init();
 // notify user in console how to operate
 console.log(AA.debugPrefix+"Run 'AA.ascend();' to ascend.");
