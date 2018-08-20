@@ -1,12 +1,11 @@
-var SpeedyGonzalez = {};
-SpeedyGonzalez.fpsNormal = 13;
-SpeedyGonzalez.fpsFrenzy = 0;
-SpeedyGonzalez.frenzy = function() {
+var Speedy = {};
+
+Speedy.frenzy = function() {
   // return frenzy status
   return Game.hasBuff("Frenzy")?true:false;
 }
 
-SpeedyGonzalez.bldgFrenzy = function() {
+Speedy.bldgFrenzy = function() {
   // return bldg frenzy status
 //   for(var bldg = 0; bldg < Game.buffs.length; bldg++) {
 //     if (Game.buffs[bldg].type.name=="building buff") return true;
@@ -20,43 +19,43 @@ SpeedyGonzalez.bldgFrenzy = function() {
   return bldgExists;
 } //why wont anything work!?
 
-SpeedyGonzalez.clickFrenzy = function() {
+Speedy.clickFrenzy = function() {
   // return click frenzy status
   return Game.hasBuff("Click frenzy")?true:false;
 }
 
-SpeedyGonzalez.dLog = function(msg) {
-  if (SpeedyGonzalez.debug) console.log(SpeedyGonzalez.debugPrefix + msg);
+Speedy.dLog = function(msg) {
+  if (Speedy.debug) console.log(Speedy.debugPrefix + msg);
 }
 
-SpeedyGonzalez.run = function() {
-  if(SpeedyGonzalez.frenzy() && SpeedyGonzalez.bldgFrenzy() && SpeedyGonzalez.clickFrenzy()) {
-    FrozenCookies.fpsModifier = SpeedyGonzalez.fpsFrenzy;
-    SpeedyGonzalez.dLog("Set FPS to Frenzy (24).");
+Speedy.run = function() {
+  if(Speedy.frenzy() /*&& Speedy.bldgFrenzy() && Speedy.clickFrenzy()*/) {
+    FrozenCookies.fpsModifier = Speedy.fpsFrenzy;
+    Speedy.dLog("Set FPS to Frenzy (24).");
   } else {
-    FrozenCookies.fpsModifier = SpeedyGonzalez.fpsNormal;
-    SpeedyGonzalez.dLog("Set FPS to Normal (300).");
+    FrozenCookies.fpsModifier = Speedy.fpsNormal;
+    Speedy.dLog("Set FPS to Normal (300).");
   }
 }
 
-SpeedyGonzalez.start = function() {
-  SpeedyGonzalez.init();
-  SpeedyGonzalez.intervalID = setInterval(SpeedyGonzalez.run, 1000 * 5);
-  SpeedyGonzalez.dLog("Initialized.");
+Speedy.start = function() {
+  if (Speedy.debug == "undefined") Speedy.init();
+  Speedy.intervalID = setInterval(Speedy.run, 1000 * 5);
+  Speedy.dLog("Initialized.");
 }
 
-SpeedyGonzalez.stop = function() {
-  clearInterval(SpeedyGonzalez.intervalID);
+Speedy.stop = function() {
+  clearInterval(Speedy.intervalID);
 }
 
-SpeedyGonzalez.init = function() {
-  SpeedyGonzalez.fpsNormal = 13;
-  SpeedyGonzalez.fpsFrenzy = 0;
-  SpeedyGonzalez.debug = true;
-  SpeedyGonzalez.debugPrefix = "[SpeedyGonzalez] ";
+Speedy.init = function() {
+  Speedy.fpsNormal = 13;
+  Speedy.fpsFrenzy = 0;
+  Speedy.debug = true;
+  Speedy.debugPrefix = "[Speedy] ";
 }
 
-SpeedyGonzalez.start();
+Speedy.start();
 
 //default to 300fps
 //detect if there is a Building Frenzy + Frenzy/Click Frenzy + Frenzy active
