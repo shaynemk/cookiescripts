@@ -52,7 +52,7 @@ AA.ascend = function() {
       setTimeout(clearInterval(AA.intervalID,1000 * 20)); 
 
       // start with easter season to get the chocolate egg for when we next ascend
-      if (Game.Upgrades["Bunny biscuit"].unlocked && Game.Upgrades["Bunny biscuit"].bought === 0) Game.Upgrades["Bunny biscuit"].buy()
+      if (Game.Upgrades["Bunny biscuit"].unlocked && Game.Upgrades["Bunny biscuit"].bought === 0) Game.Upgrades["Bunny biscuit"].buy();
 
       // train krumblor and set the bonuses
       setTimeout(AA.krumblor.train,1000*60*2);
