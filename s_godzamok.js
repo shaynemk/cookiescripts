@@ -9,7 +9,7 @@ Destructo.magic = function() {
 }
 
 Destructo.start = function() {
-  if (Destructo.xOfferingsToGodzamok == "undefined") var xOfferingsToGodzamok = 6; //how many hundreds to sell/buy
+  if (Destructo.xOfferingsToGodzamok == "undefined") Destructo.xOfferingsToGodzamok = 6; //how many hundreds to sell/buy
   Destructo.intervalID = setInterval(Destructo.magic, 10100);
 }
 
