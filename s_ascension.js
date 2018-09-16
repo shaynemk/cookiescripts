@@ -1,15 +1,15 @@
 var AA = {};
-AA.krumblor = {};
+var Krumblor = {};
 
-AA.krumblor.train = function() {
+Krumblor.train = function() {
   if (Game.Upgrades["A crumbly egg"].unlocked && !Game.Upgrades["A crumbly egg"].bought) Game.Upgrades["A crumbly egg"].buy();
   
   for(x=Game.dragonLevel;x<Game.dragonLevels.length;x++) {
     Game.UpgradeDragon();
   }
   
-  Game.dragonAura2 = AA.krumblor.aura1;
-  Game.dragonAura = AA.krumblor.aura2;
+  Game.dragonAura2 = Krumblor.aura1;
+  Game.dragonAura = Krumblor.aura2;
 }
 
 AA.ascend = function() {
@@ -21,7 +21,7 @@ AA.ascend = function() {
     if (typeof fj != "undefined") fj.stop();
     
     // set bldg sell bonus for krumblor
-    Game.dragonAura = AA.krumblor.ascendAura;
+    Game.dragonAura = Krumblor.ascendAura;
 
     // sell everything
     for (var x = 0; x < Game.ObjectsById.length; x++) {
@@ -57,7 +57,7 @@ AA.ascend = function() {
     },1000*7); // delay for the ascension animation
     
     // train krumblor and set the bonuses
-    setTimeout(AA.krumblor.train,1000*60*2);
+    setTimeout(Krumblor.train,1000*60*2);
   }
 }
 
@@ -69,9 +69,9 @@ AA.init = function() {
   AA.debugPrefix = "[Angelic Ascension] ";
 
   // init krumblor
-  AA.krumblor.aura1 = 1; // breath of milk
-  AA.krumblor.aura2 = 15; // radiant appetite
-  AA.krumblor.ascendAura = 5; // earth shatterer
+  Krumblor.aura1 = 1; // breath of milk
+  Krumblor.aura2 = 15; // radiant appetite
+  Krumblor.ascendAura = 5; // earth shatterer
   
   // notify user in console how to operate
   console.log(AA.debugPrefix+"Run 'AA.ascend();' to ascend.");
