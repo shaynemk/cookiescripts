@@ -13,8 +13,8 @@ AA.krumblor.train = function() {
 }
 
 AA.ascend = function() {
-  if ((!Game.Upgrades["Chocolate egg"].unlocked || !Game.Upgrades["Chocolate egg"].canBuy())) Game.Note("Angelic Ascension: Error", "Chocolate Egg either not available or can't buy it, aborting.");
-  else {
+  //if ((!Game.Upgrades["Chocolate egg"].unlocked || !Game.Upgrades["Chocolate egg"].canBuy())) Game.Note("Angelic Ascension: Error", "Chocolate Egg either not available or can't buy it, aborting.");
+  //else {
     // disable FC && godzamok scripts
     if (typeof FrozenCookies != "undefined") FrozenCookies.autoBuy = 0;
     if (typeof Destructo != "undefined") Destructo.stop();
@@ -28,8 +28,8 @@ AA.ascend = function() {
       Game.ObjectsById[x].sell(-1);
     }
 
-    // buy chocolate egg
-    Game.Upgrades["Chocolate egg"].buy();
+    // buy chocolate egg, if possible
+    if(Game.Upgrades["Chocolate egg"].canBuy()) Game.Upgrades["Chocolate egg"].buy();
 
     // ascend and then wait to return and complete
     Game.Ascend(true);
@@ -57,8 +57,8 @@ AA.ascend = function() {
     },1000*7); // delay for the ascension animation
     
     // train krumblor and set the bonuses
-    setTimeout(AA.krumblor.train,1000*60*2);
-  }
+    setTimeout(AA.krumblor.train,1000*60*1);
+  //}
 }
 
 AA.init = function() {
