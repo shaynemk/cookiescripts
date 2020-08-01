@@ -47,6 +47,7 @@ AA.ascend = function() {
       // set the gods in pantheon
       AA.pantheon.slot[0]=AA.godMazok.id;
       AA.pantheon.slot[1]=AA.godMuridal.id;
+      AA.pantheon.slot[2]=AA.godMokalsium.id;
 
       // start with easter season to get the chocolate egg for when we next ascend
       if (Game.Upgrades["Bunny biscuit"].unlocked && Game.Upgrades["Bunny biscuit"].bought === 0) Game.Upgrades["Bunny biscuit"].buy();
@@ -66,6 +67,7 @@ AA.init = function() {
   AA.pantheon = Game.Objects.Temple.minigame;
   AA.godMazok = Game.Objects.Temple.minigame.gods.ruin;
   AA.godMuridal = Game.Objects.Temple.minigame.gods.labor;
+  AA.godMokalsium = Game.Objects.Temple.minigame.gods.mother;
   AA.debugPrefix = "[Angelic Ascension] ";
 
   // init krumblor
