@@ -10,14 +10,14 @@ Create bookmark, paste contents of the bookmarklet you want.
 ## Files
 
 bookmarklet_all:
-- Mezmerro's fork of Frozen Cookies
+- My Custom fork of Frozen Cookies (from Icehawk78)
 - Custom Turbo Clicker
 - Custom Godzamok automatic buy/sell code
 - Farmer John
 - Angelic Ascension
 
 bookmarklet_combined:
-- Mezmerro's fork of Frozen Cookies
+- My Custom fork of Frozen Cookies (from Icehawk78)
 - Custom Turbo Clicker
 - Custom Godzamok automatic buy/sell code
 
