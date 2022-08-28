@@ -18,4 +18,6 @@ Destructo.stop = function() {
   clearInterval(Destructo.intervalID);
 }
 
-if (Game.Objects.Temple.minigameLoaded = true) Destructo.start();
+if (Game.Objects.Temple.minigameLoaded = true) {
+  Destructo.start();
+}
